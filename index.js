@@ -15,7 +15,7 @@ const app = express();
 // enabling our servers to shut down gracefully.
 const httpServer = http.createServer(app);
 
-connectDB();
+connectDB;
 // Same ApolloServer initialization as before, plus the drain plugin
 // for our httpServer.
 const server = new ApolloServer({

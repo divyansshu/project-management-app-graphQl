@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config();
 
-const connectDB = mongoose.connect(Process.env.MONGODB_URI).then(() => {
+const connectDB = mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("mongodb successfully connected");
 });
 

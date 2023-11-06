@@ -25,6 +25,10 @@ type Query {
     projects(id: ID!): Project,
     getAllProjects: [Project]
 }
+
+type Mutation  {
+    addClient(name: String!, email: String!, phone: String!): Client!
+}
 `;
 
 
@@ -50,7 +54,26 @@ const resolvers = {
         client: (parent) => {
             return clientModel.findById(parent.clientId);
         }
+    },
+
+    Mutation: {
+        addClient: async (_, {name, email, phone}) => {
+               try {
+                const newClient = new clientModel({
+                    name,
+                    email,
+                    phone
+                });
+                const savedClient = await newClient.save();
+                return savedClient;
+
+               } catch (error) {
+                throw new Error('failed to add a new client to the database', + error.message);
+               }
+        }
     }
 };
+
+
 
 export  { typeDefs, resolvers }
